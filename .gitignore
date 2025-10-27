@@ -1,3 +1,6 @@
+token*
+.env
+
 # Logs
 logs
 *.log
