@@ -3,20 +3,30 @@ Creating Telegram bot to practice
 
 # Enviroment
 
-Node v12.22.9
+Node v22.21.0
+npm v10.9.4
 
 # Dependencies
 
-npm init -y
+> npm init -y
 
-npm install telegraf dotenv winston
+> npm install telegraf dotenv winston
 
-npm install axios cheerio # to ccr service
+> npm install axios cheerio # to ccr service
+
+> npm install node-cron
 
 
 # How to run
 
-node src/index.js
+> node src/index.js
+
+## Tests
+
+Node.js Native Test Runner
+
+> node --test
+
 
 # Folder Structure
 
@@ -46,7 +56,11 @@ telegrambot/
 
 │   │   ├── help.js
 
-│   │   └── ccr.js
+│   │   ├── ponte_on.js
+
+│   │   ├── ponte_off.js
+
+│   │   └── ponte.js
 
 │   │
 
@@ -58,7 +72,13 @@ telegrambot/
 
 │   ├── services/              # For APIs, DB, etc.
 
+│   │   ├── ccrService.js      # to get information from ccr via sul
+
+│   │   └── subscriptionService.js
+
 │   │
+
+│   ├── scheduler/          # for cron schedulers
 
 │   ├── utils/                 # Reusable utilities
 
@@ -70,6 +90,12 @@ telegrambot/
 
 │       └── index.js
 
+│   │
+
+│   └── data/                # Create data folder
+
 │
 
 └── README.md
+
+
