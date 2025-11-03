@@ -42,7 +42,3 @@ test("getPonteStatus handles network errors", async () => {
   const result = await getPonteStatus();
   assert.match(result, /Não foi possível obter o status/i);
 });
-
-test.afterEach(() => {
-  mock.restoreAll();
-});
