@@ -10,7 +10,7 @@ import ponteOnCommand from "./commands/ponteOn.js";
 import ponteOffCommand from "./commands/ponteOff.js";
 
 
-import { scheduleDailyJob } from "./scheduler/dailyJob.js";
+import { updateStatus } from "./scheduler/updateStatus.js";
 
 const bot = new Telegraf(config.botToken);
 
@@ -21,8 +21,8 @@ const bot = new Telegraf(config.botToken);
   ponteOnCommand, 
   ponteOffCommand].forEach((cmd) => cmd(bot));
 
-// Schedule daily job
-scheduleDailyJob(bot);
+// Schedule updateStatus
+updateStatus(bot);
 
 // Error handling
 bot.catch((err, ctx) => {
