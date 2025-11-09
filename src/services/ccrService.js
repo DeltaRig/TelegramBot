@@ -1,5 +1,6 @@
 import axios from "axios";
 import * as cheerio from "cheerio";
+import { t } from "../utils/i18n.js";
 
 const PONTE_URL = "https://rodovias.motiva.com.br/viasul/";
 
@@ -17,14 +18,14 @@ export async function getPonteStatus() {
     const bridgeCard = $("#bridge-hoisting-card");
 
     if (!bridgeCard.length) {
-      return "⚠️ Não encontrei informações da Ponte do Guaíba no site da ViaSul.";
+      return t(ctx, "bridge.not_found");
     }
 
     // Each timecard represents an event (upcoming, ongoing, or finished)
     const timeCards = bridgeCard.find(".cmp-timecard");
 
     if (!timeCards.length) {
-      return "ℹ️ Nenhum içamento programado ou em andamento foi encontrado.";
+      return t(ctx, "bridge.bridge_down");
     }
 
     const events = [];
@@ -39,13 +40,13 @@ export async function getPonteStatus() {
 
       let message = "";
       if (/finalizado|encerrado/i.test(normalizedStatus)) {
-        message = `✅ Içamento finalizado às ${time}.`;
+        message = t(ctx, "bridge.bridge_completed", { time });
       } else if (/em andamento|andamento/i.test(normalizedStatus)) {
-        message = `🚧 Içamento em andamento (iniciado às ${time}).`;
+        message = t(ctx, "bridge.bridge_in_progress", { time });
       } else if (/previsto|programado/i.test(normalizedStatus)) {
-        message = `📅 Içamento programado para ${time}.`;
+        message = t(ctx, "bridge.bridge_scheduled", { time });
       } else {
-        message = `ℹ️ Status: ${status} — horário ${time}.`;
+        message = t(ctx, "bridge.not_found", { status, time });
       }
 
       events.push(message);
@@ -54,10 +55,10 @@ export async function getPonteStatus() {
     // Compose response
     return events.length
       ? events.join("\n")
-      : "ℹ️ Nenhum evento de içamento encontrado no momento.";
+      : t(ctx, "bridge.not_found");
 
   } catch (error) {
-    console.error("Erro ao buscar status da ponte:", error.message);
-    return "❌ Não foi possível obter o status da Ponte do Guaíba agora. Tente novamente mais tarde.";
+    console.error(t(ctx, "errors.updateStatus", { error: error.message }));
+    return t(ctx, "errors.updateStatus", { error: error.message });
   }
 }

@@ -1,5 +1,8 @@
+// src/commands/help.js
+import { t } from "../utils/i18n.js";
+
 export default (bot) => {
   bot.help((ctx) => {
-    ctx.reply("Available commands:\n/start - start bot\n/help - get help\n/ponte - check Ponte do Guaíba status");
+    ctx.reply(t(ctx, "help"));
   });
 };

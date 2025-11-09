@@ -1,0 +1,18 @@
+{
+  "welcome": "Olá {{name}}! 👋 Seja bem-vindo ao bot.",
+  "help": "Comandos disponíveis:\n/start - iniciar o bot\n/help - obter ajuda\n/ponte - verificar o status da Ponte do Guaíba",
+  "bridge": {
+    "consulting": "⏳ Consultando status da Ponte do Guaíba...",
+    "notify_on": "✅ Você receberá atualizações diárias sobre a Ponte do Guaíba.",
+    "notify_off": "🚫 Você não receberá mais atualizações diárias da Ponte do Guaíba.",
+    "status_update": "📢 Atualização da ponte:\n{{status}}",
+    "bridge_scheduled": "📅⚠️ Içamento programado para {{time}}.",
+    "bridge_in_progress": "🚧⚠️ Içamento em andamento (iniciado às {{time}}).",
+    "bridge_completed": "✅ Içamento finalizado às {{time}}.",
+    "bridge_down": "✅ A ponte do Guaíba está liberada para passagem.",
+    "not_found": "⚠️ Não encontrei informações da Ponte do Guaíba no site da ViaSul."
+  },
+  "errors": {
+    "updateStatus": "❌ Falha updateStatus: {{error}}"
+  }
+}
